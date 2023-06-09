@@ -1,5 +1,6 @@
 """
 The Program for web scrapping from any website using python. please install latest chrome driver and google chrome and also intall pandas and selenium
+this is headless mode. so the borwser will not open and everything will be done in background
 
 """
 
@@ -13,8 +14,11 @@ path = "C:/Users/Shanto/Downloads/Programs/chromedriver_win32"
 
 
 # Headless mode
+options = Options()
+options.headless = True
+
 service = Service(executable_path=path)
-driver = webdriver.Chrome(service=service)
+driver = webdriver.Chrome(service=service, options=options)
 driver.get(website)
 
 containers = driver.find_elements(by="xpath", value='//div[@class="card-content pt-20 pb-20 pr-20"]')
@@ -35,6 +39,6 @@ for container in containers:
 
 my_dict = {'title': titles, 'subtitle': subtitles, 'link': links}
 df_headlines = pd.DataFrame(my_dict)
-df_headlines.to_csv('headline.csv')
+df_headlines.to_csv('headline-headless.csv')
 
 driver.quit()
