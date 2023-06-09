@@ -1,15 +1,18 @@
 """
-The Program for web scrapping from any website using python
+The Program for web scrapping from any website using python. please install latest chrome driver and google chrome and also intall pandas and selenium
 
 """
 
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import pandas as pd
 
 website = "https://www.thedailystar.net/tech-startup"
 path = "C:/Users/Shanto/Downloads/Programs/chromedriver_win32"
 
+
+# Headless mode
 service = Service(executable_path=path)
 driver = webdriver.Chrome(service=service)
 driver.get(website)
